@@ -26,6 +26,7 @@ namespace SkibidiToilet
             Exiled.Events.Handlers.Server.RoundEnded += OnRoundEnded;
             Exiled.Events.Handlers.Player.Died += PlayerDead;
             Exiled.Events.Handlers.Player.ChangingRole += ChangingRole;
+            Exiled.Events.Handlers.Player.Escaping += Escaping;
             base.OnEnabled();
         }
 
@@ -35,6 +36,7 @@ namespace SkibidiToilet
             Exiled.Events.Handlers.Server.RoundEnded -= OnRoundEnded;
             Exiled.Events.Handlers.Player.Died -= PlayerDead;
             Exiled.Events.Handlers.Player.ChangingRole -= ChangingRole;
+            Exiled.Events.Handlers.Player.Escaping -= Escaping;
             plugin = null;
             base.OnDisabled();
         }
@@ -62,6 +64,10 @@ namespace SkibidiToilet
         {
             toilet.audious.Clear();
             toilet.skibidiToilets.Clear();
+        }
+        public void Escaping(EscapingEventArgs ev)
+        {
+            Clear(ev.Player);
         }
 
         private void Clear(Player player)
